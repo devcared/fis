@@ -48,7 +48,7 @@ export default function HeaderBar({ exitDirection = "Rechts" }: HeaderBarProps) 
             src="/logo.svg"
             alt="DB Logo"
             fill
-            className="object-contain"
+            style={{ objectFit: "contain" }}
             priority
           />
         </div>

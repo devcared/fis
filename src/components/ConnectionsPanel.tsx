@@ -44,7 +44,8 @@ export default function ConnectionsPanel({
     }
 
     // Im Development-Modus immer anzeigen
-    if (process.env.NODE_ENV === "development") {
+    // Prüfe sowohl NODE_ENV als auch ob wir im Browser sind
+    if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
       setShouldShow(true);
       return;
     }

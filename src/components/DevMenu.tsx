@@ -51,7 +51,8 @@ export default function DevMenu({ trainData, onUpdate, onMenuToggle }: DevMenuPr
   }, [isOpen, onMenuToggle]);
 
   // Nur im Development-Modus anzeigen
-  if (process.env.NODE_ENV === "production") {
+  // Verwende typeof window !== 'undefined' als zusätzliche Prüfung für Client-Side
+  if (typeof window === "undefined" || process.env.NODE_ENV === "production") {
     return null;
   }
 
