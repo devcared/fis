@@ -69,9 +69,8 @@ export default function TrainDisplay({ initialData }: TrainDisplayProps) {
         className="flex-shrink-0 bg-white flex flex-col overflow-hidden"
         style={{ 
           aspectRatio: '16/9',
-          maxWidth: '1920px',
-          maxHeight: '1080px',
-          margin: '0 auto'
+          height: '100vh',
+          maxHeight: '100vh'
         }}
       >
         {/* Rote Akzentlinie oben - präzise 2px */}

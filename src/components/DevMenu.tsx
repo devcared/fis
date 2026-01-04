@@ -50,11 +50,11 @@ export default function DevMenu({ trainData, onUpdate, onMenuToggle }: DevMenuPr
     onMenuToggle?.(isOpen);
   }, [isOpen, onMenuToggle]);
 
-  // Nur im Development-Modus anzeigen
-  // Verwende typeof window !== 'undefined' als zusätzliche Prüfung für Client-Side
-  if (typeof window === "undefined" || process.env.NODE_ENV === "production") {
-    return null;
-  }
+  // Dev-Menü anzeigen (auch in Production für Testing)
+  // Kann durch Umgebungsvariable gesteuert werden
+  // if (process.env.NEXT_PUBLIC_DISABLE_DEV_MENU === "true") {
+  //   return null;
+  // }
 
   const handleNextStation = () => {
     if (trainData.currentStationIndex < trainData.stations.length - 1) {
