@@ -12,12 +12,11 @@ interface RouteListProps {
 /**
  * RouteList-Komponente
  * 
- * DESIGN-PHILOSOPHIE: Modernes Tabellen-Design
+ * DESIGN-PHILOSOPHIE: Professionelle Tabellenstruktur
  * - Volle Breite, klare Zeilen
  * - Sehr große, fette Schrift
- * - Alternierende Hintergründe mit subtilen Schatten
+ * - Alternierende Hintergründe für bessere Lesbarkeit
  * - Rote Markierung für nächsten Halt
- * - Moderne Badge-Designs
  * - Automatisches Smooth-Scrolling
  */
 export default function RouteList({
@@ -157,16 +156,16 @@ export default function RouteList({
           return (
             <div
               key={globalIndex}
-              className={`flex items-center justify-between px-14 py-8 w-full transition-all ${
-                isEven ? "bg-white" : "bg-gradient-to-r from-[#fafafa] to-[#f5f5f5]"
+              className={`flex items-center justify-between px-14 py-8 w-full ${
+                isEven ? "bg-white" : "bg-[#f5f5f5]"
               } border-b border-[#e5e5e5] ${
-                isNext ? "border-l-4 border-l-[#DC2626] shadow-[4px_0_8px_rgba(220,38,38,0.15)]" : ""
-              } ${isNext ? "shadow-md" : "shadow-sm hover:shadow-md"} rounded-r-lg`}
+                isNext ? "border-l-4 border-l-[#DC2626]" : ""
+              }`}
             >
               {/* Station Name links */}
               <div className="flex items-center gap-12 flex-1 min-w-0 pr-8">
                 <div className="flex flex-col min-w-0 flex-1">
-                  <div className="text-6xl font-black text-gray-900 leading-tight break-words tracking-tight">
+                  <div className="text-6xl font-black text-black leading-tight break-words tracking-tight">
                     {station.name}
                   </div>
                 </div>
@@ -174,19 +173,19 @@ export default function RouteList({
 
               {/* Rechte Seite: Ankunftszeiten untereinander + Gleis-Badge */}
               <div className="flex items-center gap-8 flex-shrink-0">
-                {/* Ankunftszeiten untereinander - mit Card */}
-                <div className="flex flex-col items-end gap-2 bg-white rounded-lg px-4 py-2 shadow-sm border border-[#e5e5e5]">
-                  <div className="text-4xl text-gray-900 font-black leading-tight tabular-nums whitespace-nowrap">
+                {/* Ankunftszeiten untereinander */}
+                <div className="flex flex-col items-end gap-2">
+                  <div className="text-4xl text-black font-black leading-tight tabular-nums whitespace-nowrap">
                     {station.arrivalTime}
                   </div>
-                  <div className="text-4xl text-gray-900 font-black leading-tight tabular-nums whitespace-nowrap">
+                  <div className="text-4xl text-black font-black leading-tight tabular-nums whitespace-nowrap">
                     {station.departureTime}
                   </div>
                 </div>
 
-                {/* Gleis-Badge - Modern mit Shadow */}
+                {/* Gleis-Badge */}
                 {station.platformDisplay && (
-                  <div className="bg-gradient-to-br from-gray-900 to-black text-white px-7 py-5 rounded-xl border border-gray-700 flex-shrink-0 shadow-lg">
+                  <div className="bg-black text-white px-7 py-5 border border-[#666666] flex-shrink-0">
                     <div className="text-3xl font-black leading-none whitespace-nowrap">{station.platformDisplay}</div>
                   </div>
                 )}
