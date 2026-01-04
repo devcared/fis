@@ -13,10 +13,10 @@ interface NextStopPanelProps {
 /**
  * NextStopPanel-Komponente
  * 
- * DESIGN-PHILOSOPHIE: Maximale Lesbarkeit aus 5-10 Metern
+ * DESIGN-PHILOSOPHIE: Modernes, ansprechendes Design
  * - Extrem große Schrift für Stationsnamen
- * - Klare, technische Typografie
- * - Präzise Abstände
+ * - Dezente Schatten für Tiefe
+ * - Moderne Badge-Designs
  * - Animation beim Stationswechsel
  */
 export default function NextStopPanel({
@@ -44,11 +44,11 @@ export default function NextStopPanel({
   const delayedArrival = getDelayedArrival();
 
   return (
-    <div className="bg-white px-12 py-10">
+    <div className="bg-gradient-to-b from-white to-[#fafafa] px-12 py-10 shadow-sm">
       <div className="flex items-start justify-between gap-16">
         {/* Linke Seite: Nächster Halt */}
         <div className="flex-1 min-w-0 max-w-5xl">
-          <div className="text-2xl font-bold text-black -mb-3 tracking-tight whitespace-nowrap">Nächster Halt</div>
+          <div className="text-2xl font-bold text-gray-600 -mb-3 tracking-tight whitespace-nowrap">Nächster Halt</div>
           <AnimatePresence mode="wait">
             <motion.div
               key={nextStation}
@@ -56,7 +56,7 @@ export default function NextStopPanel({
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: 50, scale: 0.95 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="text-9xl font-black text-black leading-none tracking-tight break-words hyphens-auto"
+              className="text-9xl font-black text-gray-900 leading-none tracking-tight break-words hyphens-auto drop-shadow-sm"
             >
               {nextStation}
             </motion.div>
@@ -65,9 +65,9 @@ export default function NextStopPanel({
 
         {/* Rechte Seite: Geplante Ankunftszeit und Gleisanzeige */}
         <div className="flex items-center gap-40 flex-shrink-0">
-          {/* Geplante Ankunftszeit */}
-          <div className="flex flex-col items-end gap-3">
-            <div className="text-xl font-semibold text-black whitespace-nowrap">Geplante Ankunftszeit</div>
+          {/* Geplante Ankunftszeit - mit Card-Design */}
+          <div className="flex flex-col items-end gap-3 bg-white rounded-xl px-6 py-4 shadow-md border border-[#e5e5e5]">
+            <div className="text-lg font-semibold text-gray-600 whitespace-nowrap">Geplante Ankunftszeit</div>
             
             <div className="flex items-center gap-4">
               {/* Erste Zeit - immer angezeigt, bei Verspätung durchgestrichen */}
@@ -78,7 +78,7 @@ export default function NextStopPanel({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.3 }}
-                  className={`text-6xl font-black text-black leading-none whitespace-nowrap tabular-nums ${
+                  className={`text-6xl font-black text-gray-700 leading-none whitespace-nowrap tabular-nums ${
                     delay > 0 ? 'line-through decoration-3' : ''
                   }`}
                 >
@@ -104,7 +104,7 @@ export default function NextStopPanel({
             </div>
           </div>
 
-          {/* Gleis-Badge */}
+          {/* Gleis-Badge - Modern mit Shadow */}
           {platformDisplay && (
             <AnimatePresence mode="wait">
               <motion.div
@@ -113,7 +113,7 @@ export default function NextStopPanel({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.3 }}
-                className="bg-black text-white px-6 py-4 border border-[#666666] flex-shrink-0"
+                className="bg-gradient-to-br from-gray-900 to-black text-white px-6 py-4 rounded-xl border border-gray-700 flex-shrink-0 shadow-lg"
               >
                 <div className="text-3xl font-black leading-none whitespace-nowrap">{platformDisplay}</div>
               </motion.div>

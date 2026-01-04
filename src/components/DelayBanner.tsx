@@ -9,10 +9,10 @@ interface DelayBannerProps {
 /**
  * DelayBanner-Komponente
  * 
- * DESIGN-PHILOSOPHIE: Minimalistisches Warnbanner
- * - Warmes Gelb für Warnung
+ * DESIGN-PHILOSOPHIE: Modernes Warnbanner
+ * - Warmes Gelb mit Gradient
  * - Große, klare Schrift
- * - Keine verspielten Elemente
+ * - Subtile Schatten für Tiefe
  */
 export default function DelayBanner({ delayReason }: DelayBannerProps) {
   if (!delayReason) return null;
@@ -23,9 +23,9 @@ export default function DelayBanner({ delayReason }: DelayBannerProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.3 }}
-      className="bg-[#FFC107] px-12 py-6 flex items-center justify-center flex-shrink-0"
+      className="bg-gradient-to-r from-[#FFC107] to-[#FFB300] px-12 py-6 flex items-center justify-center flex-shrink-0 shadow-lg border-b-2 border-[#FFA000]"
     >
-      <span className="text-2xl font-bold text-white leading-tight">{delayReason}</span>
+      <span className="text-2xl font-bold text-white leading-tight drop-shadow-sm">{delayReason}</span>
     </motion.div>
   );
 }

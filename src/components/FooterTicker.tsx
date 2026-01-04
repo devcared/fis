@@ -9,10 +9,10 @@ interface FooterTickerProps {
 /**
  * FooterTicker-Komponente
  * 
- * DESIGN-PHILOSOPHIE: Technischer Lauftext
+ * DESIGN-PHILOSOPHIE: Moderner Lauftext
  * - Große, klare Schrift
  * - Kontinuierliches Scrolling
- * - Professionelle Darstellung
+ * - Gradient-Hintergrund mit Shadow
  */
 export default function FooterTicker({ 
   message = "++ Bitte beachten Sie die geltenden Beförderungsbedingungen und halten Sie Ihre Fahrkarte bereit ++" 
@@ -69,11 +69,11 @@ export default function FooterTicker({
   return (
     <div 
       ref={containerRef}
-      className="bg-black text-white h-20 flex items-center overflow-hidden relative"
+      className="bg-gradient-to-b from-[#1a1a1a] to-black text-white h-20 flex items-center overflow-hidden relative shadow-lg"
     >
       <div
         ref={tickerRef}
-        className="text-3xl font-semibold whitespace-nowrap absolute"
+        className="text-3xl font-semibold whitespace-nowrap absolute drop-shadow-sm"
         style={{
           transform: `translateX(${offset}px)`,
           left: 0
