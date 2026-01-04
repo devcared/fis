@@ -12,15 +12,11 @@ interface ConnectionsPanelProps {
 /**
  * ConnectionsPanel-Komponente
  * 
- * Zeigt Anschlussverbindungen am nächsten Halt
- * Minimalistisches, technisches Design
- * 
- * DESIGN-PHILOSOPHIE:
- * - Minimalistisch, reduziert
- * - Nur essentielle Informationen
- * - Klare, große Schrift
- * - Keine Icons, keine verspielten Elemente
- * - Technisches, autoritatives Design
+ * DESIGN-PHILOSOPHIE: Minimalistisches, technisches Design
+ * - Sehr große, klare Schrift
+ * - Farbcodierte Zugnummern
+ * - Professionelle Darstellung
+ * - Maximale Lesbarkeit
  */
 export default function ConnectionsPanel({ 
   connections, 
@@ -44,7 +40,6 @@ export default function ConnectionsPanel({
     }
 
     // Im Development-Modus immer anzeigen
-    // Prüfe sowohl NODE_ENV als auch ob wir im Browser sind
     if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
       setShouldShow(true);
       return;
@@ -78,7 +73,7 @@ export default function ConnectionsPanel({
   const getBadgeStyle = (trainNumber: string) => {
     const upper = trainNumber.toUpperCase();
     if (upper.startsWith("ICE") || upper.startsWith("IC") || upper.startsWith("EC")) {
-      return "bg-white text-black border border-[#cccccc]";
+      return "bg-white text-black border-2 border-[#cccccc]";
     } else if (upper.startsWith("S")) {
       return "bg-[#16a34a] text-white";
     } else if (upper.startsWith("U")) {
@@ -88,35 +83,35 @@ export default function ConnectionsPanel({
   };
 
   return (
-    <div className="bg-white border-t border-[#e5e5e5] px-12 py-6">
-      <div className="text-2xl font-semibold text-black mb-5 tracking-tight">Anschlüsse am nächsten Halt</div>
-      <div className="space-y-4">
+    <div className="bg-white border-t border-[#e5e5e5] px-12 py-8">
+      <div className="text-3xl font-bold text-black mb-6 tracking-tight">Anschlüsse am nächsten Halt</div>
+      <div className="space-y-5">
         {connections.map((connection, index) => (
           <div
             key={index}
-            className="flex items-center gap-6"
+            className="flex items-center gap-8"
           >
             {/* Zugnummer Badge */}
-            <div className={`font-bold text-xl px-4 py-2 flex-shrink-0 ${getBadgeStyle(connection.trainNumber)}`}>
+            <div className={`font-black text-2xl px-5 py-3 flex-shrink-0 ${getBadgeStyle(connection.trainNumber)}`}>
               {connection.trainNumber}
             </div>
 
             {/* Zielbahnhof */}
             <div className="flex-1 min-w-0">
-              <div className="text-4xl font-black text-black leading-tight break-words tracking-tight">
+              <div className="text-5xl font-black text-black leading-tight break-words tracking-tight">
                 {connection.destination}
               </div>
             </div>
 
             {/* Gleis und Abfahrtszeit */}
-            <div className="flex items-center gap-6 flex-shrink-0">
+            <div className="flex items-center gap-8 flex-shrink-0">
               {/* Gleis Badge */}
-              <div className="bg-black text-white px-4 py-2">
-                <div className="text-xl font-bold leading-none whitespace-nowrap">{connection.platform}</div>
+              <div className="bg-black text-white px-5 py-3 border border-[#666666]">
+                <div className="text-2xl font-black leading-none whitespace-nowrap">{connection.platform}</div>
               </div>
 
               {/* Abfahrtszeit */}
-              <div className="text-3xl font-black text-black tabular-nums leading-none whitespace-nowrap tracking-tight">
+              <div className="text-4xl font-black text-black tabular-nums leading-none whitespace-nowrap tracking-tight">
                 {connection.departureTime}
               </div>
             </div>

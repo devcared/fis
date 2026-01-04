@@ -103,6 +103,13 @@ export default function TrainDisplay({ initialData }: TrainDisplayProps) {
             </div>
           )}
 
+          {/* Verspätungsbanner - separater Container */}
+          {!isEndStation && trainData.delay > 0 && trainData.delayReason && (
+            <div className="flex-shrink-0">
+              <DelayBanner delayReason={trainData.delayReason} />
+            </div>
+          )}
+
           {/* Anschlussverbindungen - wird nur in den letzten 2 Minuten angezeigt */}
           {!isEndStation && trainData.connections && trainData.connections.length > 0 && (
             <div className="flex-shrink-0">

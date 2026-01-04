@@ -14,9 +14,13 @@
 
 /**
  * Globale Styles für Fahrgastinformationsanzeige
- * Design nach Screenshot: Weißer Hauptbereich, dunkler Header/Footer
- * Klare, sachliche Typografie für Industrie-/DB-Stil
- * Optimiert für 16:9 Full-HD (1920×1080)
+ * 
+ * DESIGN-PHILOSOPHIE: Professionelles Bahn-System
+ * - Technische, autoritative Typografie
+ * - Maximale Lesbarkeit aus 5-10 Metern
+ * - Keine Web-App-Optik
+ * - Klare, sachliche Darstellung
+ * - Optimiert für Ultra-Wide und Standard-Monitore
  */
 body {
   background: #ffffff;
@@ -32,6 +36,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-feature-settings: "tnum"; /* Tabular numbers für stabile Ziffern */
 }
 
 /* 16:9 Seitenverhältnis für Full-HD Displays */
@@ -47,9 +52,17 @@ hr, .border-red-600 {
 }
 
 /* Optimierte Schriftdarstellung für große Displays */
-h1, h2, h3, .text-8xl, .text-7xl, .text-6xl, .text-5xl, .text-4xl {
-  letter-spacing: -0.02em;
-  font-weight: 700;
+h1, h2, h3, 
+.text-9xl, .text-8xl, .text-7xl, .text-6xl, .text-5xl, .text-4xl, .text-3xl {
+  letter-spacing: -0.03em;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+/* Tabular numbers für alle Zeitangaben */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
 
 /* Keine Layout-Shifts durch reservierten Platz */
@@ -57,4 +70,23 @@ img, video, svg {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+/* Optimierte Scrollbar (falls sichtbar) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #999999;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666666;
 }

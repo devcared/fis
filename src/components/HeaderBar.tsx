@@ -10,9 +10,12 @@ interface HeaderBarProps {
 
 /**
  * HeaderBar-Komponente
- * Zeigt Logo links, Ausstieg-Hinweis mittig, Datum & Uhrzeit rechts
- * Optimiert für maximale Lesbarkeit und präzise Abstände
- * Pfeil zeigt in die richtige Richtung und ist rechts/links vom Text positioniert
+ * 
+ * DESIGN-PHILOSOPHIE: Technisches Bahn-System
+ * - Sehr dunkler Hintergrund (schwarz)
+ * - Große, klare Schrift für maximale Lesbarkeit
+ * - Präzise Abstände, keine Schatten
+ * - Pfeil zeigt in die richtige Richtung
  */
 export default function HeaderBar({ exitDirection = "Rechts" }: HeaderBarProps) {
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
@@ -40,10 +43,10 @@ export default function HeaderBar({ exitDirection = "Rechts" }: HeaderBarProps) 
   const ArrowIcon = isRight ? ArrowRight : ArrowLeft;
 
   return (
-    <div className="bg-black text-white px-10 py-5 flex items-center justify-between h-20">
+    <div className="bg-black text-white px-12 py-6 flex items-center justify-between h-24">
       {/* Logo links - DB Logo */}
       <div className="flex items-center gap-4 flex-shrink-0 min-w-0">
-        <div className="relative h-14 w-14 flex-shrink-0">
+        <div className="relative h-16 w-16 flex-shrink-0">
           <Image
             src="/logo.svg"
             alt="DB Logo"
@@ -55,14 +58,14 @@ export default function HeaderBar({ exitDirection = "Rechts" }: HeaderBarProps) 
       </div>
 
       {/* Ausstieg-Hinweis mittig - absolut zentriert, Pfeil rechts oder links */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 text-2xl font-medium whitespace-nowrap flex items-center gap-2">
-        {!isRight && <ArrowIcon className="w-7 h-7 flex-shrink-0" strokeWidth={2.5} />}
+      <div className="absolute left-1/2 transform -translate-x-1/2 text-3xl font-semibold whitespace-nowrap flex items-center gap-3">
+        {!isRight && <ArrowIcon className="w-8 h-8 flex-shrink-0" strokeWidth={2.5} />}
         <span>Ausstieg {exitDirection}</span>
-        {isRight && <ArrowIcon className="w-7 h-7 flex-shrink-0" strokeWidth={2.5} />}
+        {isRight && <ArrowIcon className="w-8 h-8 flex-shrink-0" strokeWidth={2.5} />}
       </div>
 
       {/* Datum & Uhrzeit rechts */}
-      <div className="text-2xl font-bold tabular-nums flex-shrink-0 whitespace-nowrap ml-auto flex items-center gap-8">
+      <div className="text-3xl font-bold tabular-nums flex-shrink-0 whitespace-nowrap ml-auto flex items-center gap-10">
         <span>{formattedDate}</span>
         <span>{formattedTime} Uhr</span>
       </div>

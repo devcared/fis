@@ -8,9 +8,11 @@ interface FooterTickerProps {
 
 /**
  * FooterTicker-Komponente
- * Zeigt Lauftext in der Fußzeile
- * Text scrollt nach rechts aus dem Bild und kommt von links wieder
- * Mittig positioniert mit kontinuierlichem Loop
+ * 
+ * DESIGN-PHILOSOPHIE: Technischer Lauftext
+ * - Große, klare Schrift
+ * - Kontinuierliches Scrolling
+ * - Professionelle Darstellung
  */
 export default function FooterTicker({ 
   message = "++ Bitte beachten Sie die geltenden Beförderungsbedingungen und halten Sie Ihre Fahrkarte bereit ++" 
@@ -32,7 +34,7 @@ export default function FooterTicker({
     const startOffset = (containerWidth - tickerWidth) / 2;
     let currentOffset = startOffset;
     
-    // Scroll-Geschwindigkeit (Pixel pro Frame) - erhöht für schnelleren Lauftext
+    // Scroll-Geschwindigkeit (Pixel pro Frame)
     const scrollSpeed = 1.5;
 
     const animate = () => {
@@ -67,11 +69,11 @@ export default function FooterTicker({
   return (
     <div 
       ref={containerRef}
-      className="bg-black text-white h-16 flex items-center overflow-hidden relative"
+      className="bg-black text-white h-20 flex items-center overflow-hidden relative"
     >
       <div
         ref={tickerRef}
-        className="text-2xl font-medium whitespace-nowrap absolute"
+        className="text-3xl font-semibold whitespace-nowrap absolute"
         style={{
           transform: `translateX(${offset}px)`,
           left: 0
