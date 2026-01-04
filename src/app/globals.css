@@ -2,7 +2,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
 }
 
 @theme inline {
@@ -12,15 +12,49 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/**
+ * Globale Styles für Fahrgastinformationsanzeige
+ * Design nach Screenshot: Weißer Hauptbereich, dunkler Header/Footer
+ * Klare, sachliche Typografie für Industrie-/DB-Stil
+ * Optimiert für 16:9 Full-HD (1920×1080)
+ */
+body {
+  background: #ffffff;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Vollbild-Layout ohne Scrollbar */
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Verbesserte Lesbarkeit für große Displays aus mehreren Metern */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* 16:9 Seitenverhältnis für Full-HD Displays */
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Präzise Linien für rote Akzente */
+hr, .border-red-600 {
+  border-color: #dc2626;
+}
+
+/* Optimierte Schriftdarstellung für große Displays */
+h1, h2, h3, .text-8xl, .text-7xl, .text-6xl, .text-5xl, .text-4xl {
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+/* Keine Layout-Shifts durch reservierten Platz */
+img, video, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }

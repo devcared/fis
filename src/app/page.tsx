@@ -1,65 +1,40 @@
-import Image from "next/image";
+import TrainDisplay from "@/components/TrainDisplay";
+import { getTrainData } from "@/lib/trainService";
 
-export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+/**
+ * Hauptseite der Fahrgastinformationsanzeige
+ * 
+ * DESIGN nach Screenshot - optimiert für 16:9 Full-HD (1920×1080):
+ * - Weißer Hauptbereich
+ * - Dunkler Header & Footer
+ * - Rote Akzentlinien oben & unten (präzise 2px)
+ * - Sehr große, fette Schrift für nächsten Halt und Uhrzeiten
+ * - Klare, sachliche Typografie (Industrie-/DB-Stil)
+ * - Viel Weißraum, keine verspielten Effekte
+ * - Kontrastreich, gut lesbar aus mehreren Metern
+ * - Statisches Layout ohne Layout-Shifts
+ * 
+ * API-INTEGRATION:
+ * Die Daten werden aktuell über getTrainData() geladen (Mock-Daten).
+ * 
+ * Für die Integration einer echten API:
+ * 
+ * Option 1: REST-API
+ * - Ändere src/lib/trainService.ts
+ * - fetch('https://api.example.com/train/current')
+ * 
+ * Option 2: WebSocket (für Live-Updates)
+ * - Client-Side: useEffect mit WebSocket
+ * - Oder: Server-Sent Events (SSE) in separater Route
+ * 
+ * Option 3: MQTT
+ * - Client-Side MQTT-Client (z.B. mqtt.js)
+ * - Subscribe auf Topic für Zugdaten
+ * 
+ * Die Datenstruktur (TrainData) bleibt gleich, nur die Quelle ändert sich.
+ */
+export default async function Home() {
+  const trainData = await getTrainData();
+
+  return <TrainDisplay initialData={trainData} />;
 }
